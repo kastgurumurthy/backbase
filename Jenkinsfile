@@ -14,7 +14,7 @@ node {
 	
 	stage ('Build image') {
 	
-	app = docker.build("test.txt")
+	app = docker.build("*.war")
 	}
 	
 	stage ('Push image') {
