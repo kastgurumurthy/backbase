@@ -14,7 +14,7 @@ node {
 	
 	stage ('Build image') {
 	
-	app = docker.build("*.war")
+	app = docker.build("kastgurumurthy/Backbase-Task/sample.war")
 	}
 	
 	stage ('Push image') {
