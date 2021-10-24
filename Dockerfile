@@ -1,6 +1,6 @@
 FROM jboss/base-jdk:8
 
-COPY ./Maven-Database/target/*.jar /usr/app/
+COPY .*.war /usr/app/
 WORKDIR /usr/app
 
-ENTRYPOINT ["java", "-jar", "*.jar"]
+ENTRYPOINT ["java", "-war", "*.war"]
