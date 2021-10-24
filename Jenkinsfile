@@ -8,6 +8,7 @@ node {
 	
 	
 	stage ('Build image') {
+	sudo apt-get install docker.io
 	app = docker.build("*.war")
 	}
 	
