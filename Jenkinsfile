@@ -8,8 +8,8 @@ node {
 	
 	
 	stage ('Build image') {
-	sudo apt-get install docker.io
-	app = docker.build("*.war")
+	
+	app = docker.build("test.txt")
 	}
 	
 	stage ('Push image') {
