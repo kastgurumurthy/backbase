@@ -8,6 +8,7 @@
 6. Provide admin password for jenkins copying from kubectl logs <pod name>
 7. Create docker hub credentials in jenkins.
 8. Install cloudbees docker build and publish plugin, Docker Pipeline plugin, Docker plugins in Jenkins.
+9. docker.build("<Provide your docker repo>") in Jenkins file.
   
   
   
