@@ -1,6 +1,4 @@
-FROM jboss/base-jdk:8
-
-COPY .*.war /usr/app/
-WORKDIR /usr/app
-
-ENTRYPOINT ["java", "-war", "*.war"]
+FROM java:8
+EXPOSE 8080
+ADD /sample.war sample.war
+ENTRYPOINT ["java", "-jar", "sample.war"]
