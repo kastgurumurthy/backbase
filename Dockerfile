@@ -1,5 +1,4 @@
 FROM jenkinsci/jenkins
-MAINTAINER Sreeprakash Neelakantan <sree@schogini.com>
 USER root
 RUN apt-get update && apt-get install -y tree nano curl sudo
 RUN curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker
