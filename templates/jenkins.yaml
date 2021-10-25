@@ -1,1 +1,33 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: jenkins
+  name: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - image: jenkins/jenkins:lts
+        name: jenkins
+        ports:
+        - name: jnlpport
+          containerPort: 50000
+        - name: httpport
+          containerPort: 8080
+        volumeMounts:
+        - mountPath: /cache
+          name: cache-volume
+      volumes:
+      - name: cache-volume
+        emptyDir: {}
