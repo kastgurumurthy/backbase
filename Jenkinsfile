@@ -14,7 +14,7 @@ node {
 	
 	stage ('Build image') {
 	echo '=== Building Docker Image ==='
-	dockerfile = docker.build("*.war")
+	dockerfile = docker.build("Dockerfile")
 	}
 	
 	stage ('Push image') {
