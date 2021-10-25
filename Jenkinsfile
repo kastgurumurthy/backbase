@@ -7,5 +7,6 @@ pipeline {
       steps {
       echo 'Image built'
       }
+      }
     }
 }
