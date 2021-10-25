@@ -7,9 +7,9 @@
 5. Provide {public ip}:30000 to access the jenkins service.
 6. Provide admin password for jenkins copying from kubectl logs <pod name>
 7. Create docker hub credentials in jenkins.
-8. Install cloudbees docker build and publish plugin, Docker Pipeline plugin, Docker plugins in Jenkins.
+8. Install cloudbees docker build and publish plugin, Docker Pipeline plugin, CloudBees Docker Hub/Registry Notification, Docker plugins in Jenkins.
 9. docker.build("<Provide your docker repo>") in Jenkins file.
-10. Jenkins->Global System Configuration-> Add Github to auto installation.
+10. Jenkins->Global System Configuration-> Add myDocker to check install automatically.
 11. Create a multi branch pipeline and add github repo under branch sources, save and run the job.
   
   
