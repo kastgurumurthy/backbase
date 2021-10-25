@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: war-deploy
+  name: war-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: war-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: war-deploy
+    spec:
+      containers:
+      - image: kastguru/sample
+        name: war-deploy
+        volumeMounts:
+        - mountPath: /cache1
+          name: cache-volume1
+      volumes:
+      - name: cache-volume1
+        emptyDir: {}
