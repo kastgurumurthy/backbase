@@ -9,7 +9,8 @@
 7. Create docker hub credentials in jenkins.
 8. Install cloudbees docker build and publish plugin, Docker Pipeline plugin, Docker plugins in Jenkins.
 9. docker.build("<Provide your docker repo>") in Jenkins file.
-10. 
+10. Jenkins->Global System Configuration-> Add Github to auto installation.
+11. Create a multi branch pipeline and add github endpoint, save and run the job.
   
   
   
