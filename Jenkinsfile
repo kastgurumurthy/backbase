@@ -14,7 +14,7 @@ node {
 	
 	stage ('Build image') {
 	echo '=== Building Docker Image ==='
-	dockerfile = docker.build("backbase/Dockerfile")
+	dockerfile = docker.build("sample")
 	}
 	
 	stage ('Push image') {
