@@ -4,7 +4,7 @@ pipeline {
 	stages {
 		stage ('checkout') {
 			steps {
-				git branch: 'master', url: 'https://github.com/kastgurumurthy/backbase.git/sample.war'
+				git branch: 'master', url: 'https://github.com/kastgurumurthy/backbase.git'
 			}
 		}
 	}
