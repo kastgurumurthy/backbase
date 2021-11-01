@@ -1,5 +1,6 @@
 pipeline {
 	agent any
+	def app
 	
 	stages {
 		stage ('checkout') {
@@ -11,8 +12,7 @@ pipeline {
 		
 		stage ('create a docker image') {
 			steps {
-				sh 'docker build -t samplewebapp:latest .' 
-                		sh 'docker tag samplewebapp kastgurumurthy/samplewebapp:latest'
+				app = docker.build("kastgurumurthy/Backbase-Task/sample.war")
 			}
 		}
 	}
