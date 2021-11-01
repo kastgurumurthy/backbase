@@ -3,16 +3,17 @@ pipeline {
 	environment {
 	registry = "kastguru/sample"
    	registryCredential = 'dockerhub'
+	dockerImage = ''
 	}
 	stages {
-		stage ('checkout') {
+		stage ('Checkout') {
 			steps {
 				checkout scm
-				echo ('checkout successful')
+				echo ('Checkout Successful')
 			}
 		}
 		
-		stage ('create a docker image') {
+		stage ('Create a Docker Image') {
 			steps {
 				script {
 				docker.build registry + ":$BUILD_NUMBER"
