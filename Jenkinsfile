@@ -1,6 +1,9 @@
 pipeline {
 	agent any
-		
+	environment {
+	registry = "kastgurumurthy/sample"
+   	registryCredential = 'dockerhub'
+	}
 	stages {
 		stage ('checkout') {
 			steps {
@@ -12,7 +15,7 @@ pipeline {
 		stage ('create a docker image') {
 			steps {
 				script {
-				docker.build("kastgurumurthy/Backbase-Task/sample.war")
+				docker.build registry + ":$BUILD_NUMBER"
 				}
 			}
 		}
