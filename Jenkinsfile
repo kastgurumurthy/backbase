@@ -1,7 +1,6 @@
 pipeline {
 	agent any
-	def app
-	
+		
 	stages {
 		stage ('checkout') {
 			steps {
@@ -12,7 +11,9 @@ pipeline {
 		
 		stage ('create a docker image') {
 			steps {
-				app = docker.build("kastgurumurthy/Backbase-Task/sample.war")
+				script {
+				docker.build("kastgurumurthy/Backbase-Task/sample.war")
+				}
 			}
 		}
 	}
