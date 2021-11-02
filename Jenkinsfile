@@ -1,32 +1,22 @@
-pipeline {
-	agent any
-	environment {
-	registry = "kastguru/sample"
-   	registryCredential = 'dockerhub'
-	dockerImage = ''
+node {
+
+	def app 
+	stage ('Checkout from git hub') {
+	
+    checkout scm
 	}
-	stages {
-		stage ('Checkout') {
-			steps {
-				checkout scm
-				echo ('Checkout Successful')
-			}
+	
+	
+	stage ('Build image') {
+	app = docker.build("kastguru/sample" + ":$BUILD_NUMBER")
+	}
+	
+	stage ('Push image') {
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+
+        def customImage = docker.build("kastguru/sample")
+
+        customImage.push()
 		}
-		
-		stage ('Create a Docker Image') {
-			steps {
-				script {
-				docker.build registry + ":$BUILD_NUMBER"
-				}
-			}
-		}
-		stage('Deploy Image') {
- 		 steps{    script {
-    		  docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-        	  dockerImage.push()
-      }
     }
-  }
-}
-	}
 }
