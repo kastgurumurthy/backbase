@@ -3,7 +3,7 @@ pipeline {
 	environment {
 	registry = "kastguru/sample"
    	registryCredential = 'dockerhub'
-	dockerImage = 'https://registry.hub.docker.com'
+	dockerImage = ''
 	}
 	stages {
 		stage ('Checkout') {
@@ -22,7 +22,7 @@ pipeline {
 		}
 		stage('Deploy Image') {
  		 steps{    script {
-    		  docker.withRegistry( '', registryCredential ) {
+    		  docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
         	  dockerImage.push()
       }
     }
