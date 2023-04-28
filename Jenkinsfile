@@ -4,11 +4,13 @@ node {
 	stage ('Checkout from git hub') {
 	
     checkout scm
+		echo 'Checkout done'
 	}
 	
 	
 	stage ('Build image') {
 	app = docker.build("kastguru/sample" + ":$BUILD_NUMBER")
+		echo 'Image created'
 	}
 	
 	stage ('Push image') {
@@ -17,6 +19,7 @@ node {
         def customImage = docker.build("kastguru/sample")
 
         customImage.push()
+	    echo 'Pushed to hub'
 		}
     }
 }
