@@ -1,36 +1,23 @@
 node {
-    def app
 
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
+	def app 
+	stage ('Checkout from git hub') {
+	
+    checkout scm
+	}
+	
+	
+	stage ('Build image') {
+	app = docker.build("kastguru/sample" + ":$BUILD_NUMBER")
+	}
+	
+	stage ('Push image') {
+    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
 
-        checkout scm
-        echo 'checkout done'
-    }
+        def customImage = docker.build("kastguru/sample")
 
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("kastgurumurthy/sample")
-        echo 'Image Built'
-    }
-
-    stage('Test image') {
-      
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
-
-    stage('Push image') {
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }
+        customImage.push()
+		}
     }
 }
+
