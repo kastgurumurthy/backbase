@@ -3,7 +3,8 @@ pipeline {
 	environment {
 	docker.withTool('docker'){
         docker.withRegistry('kastguru/sample','Akshan@2108') { 
-      
+	}
+	}
 	}
 	stages {
 		stage ('Checkout') {
