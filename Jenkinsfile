@@ -1,9 +1,9 @@
 pipeline {
 	agent any
 	environment {
-	registry = "kastguru/sample"
-   	registryCredential = 'dockerhub'
-	dockerImage = 'https://registry.hub.docker.com'
+	docker.withTool('docker'){
+        docker.withRegistry('kastguru/sample','Akshan@2108') { 
+      
 	}
 	stages {
 		stage ('Checkout') {
