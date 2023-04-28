@@ -1,9 +1,4 @@
-FROM jenkins:1.596
- 
-USER root
-RUN apt-get update \
-      && apt-get install -y sudo \
-      && rm -rf /var/lib/apt/lists/*
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
- 
-USER jenkins
+FROM java:8
+EXPOSE 8080
+ADD /sample.war sample.war
+ENTRYPOINT ["java", "-jar", "sample.war"]
