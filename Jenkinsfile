@@ -5,6 +5,7 @@ node {
         /* Let's make sure we have the repository cloned to our workspace */
 
         checkout scm
+        echo 'checkout done'
     }
 
     stage('Build image') {
@@ -12,6 +13,7 @@ node {
          * docker build on the command line */
 
         app = docker.build("kastgurumurthy/sample")
+        echo 'Image Built'
     }
 
     stage('Test image') {
