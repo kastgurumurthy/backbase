@@ -3,7 +3,7 @@ environment {
 registry = "kastguru/task"
 registryCredential = 'Docker'
 dockerImage = ''
-}
+} agent any
 stages {
 		stage ('Checkout') {
 			steps {
