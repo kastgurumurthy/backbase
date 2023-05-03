@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	environment {
-	registry = "kastguru/Task"
+	registry = "kastguru/task"
    	registryCredential = 'Docker'
 	dockerImage = 'https://registry.hub.docker.com'
 	}
