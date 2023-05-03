@@ -1,32 +1,32 @@
 pipeline {
-	agent any
-	environment {
-	registry = "kastguru/sample"
-   	registryCredential = 'Docker'
-	dockerImage = 'https://registry.hub.docker.com'
-	}
-	stages {
+environment {
+registry = "kastguru/task"
+registryCredential = 'Docker'
+dockerImage = ''
+}
+stages {
 		stage ('Checkout') {
 			steps {
 				checkout scm
 				echo ('Checkout Successful')
 			}
 		}
-		
-		stage ('Create a Docker Image') {
-			steps {
-				script {
-				dockerImage.build registry + ":$BUILD_NUMBER"
-				}
-			}
-		}
-		stage('Deploy Image') {
- 		 steps{    script {
-    		  docker.withRegistry( '', registryCredential ) {
-        	  dockerImage.push()
-      }
-    }
-  }
+stage('Building our image') {
+steps{
+script {
+dockerImage = docker.build registry + ":$BUILD_NUMBER"
 }
-	}
-		}
+}
+}
+stage('Deploy our image') {
+steps{
+script {
+docker.withRegistry( '', registryCredential ) {
+dockerImage.push()
+}
+}
+}
+}
+
+}
+}
