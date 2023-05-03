@@ -1,4 +1,2 @@
-FROM java:8
-EXPOSE 8080
-ADD /sample.war sample.war
-ENTRYPOINT ["java", "-jar", "sample.war"]
+FROM Tomcat:latest
+COPY ./sample.war /usr/local/tomcat/webapps
