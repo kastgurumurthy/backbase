@@ -9,8 +9,8 @@ node {
 	
 	
 	stage ('Build image') {
-		sh 'yum install docker'
-		echo 'Docker installed successfully'
+		//sh 'yum install docker'
+		//echo 'Docker installed successfully'
 	app = docker.build("kastguru/sample" + ":$BUILD_NUMBER")
 		echo 'Image created'
 	}
