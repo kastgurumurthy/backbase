@@ -1,28 +1,32 @@
-node {
-
-	def app 
-	stage ('Checkout from git hub') {
-	
-    checkout scm
-		echo 'Checkout done'
+pipeline {
+	agent any
+	environment {
+	registry = "kastguru/Task"
+   	registryCredential = 'Docker'
+	dockerImage = 'https://registry.hub.docker.com'
 	}
-	
-	
-	stage ('Build image') {
-		//sh 'yum install docker'
-		//echo 'Docker installed successfully'
-	app = docker.build("kastguru/sample" + ":$BUILD_NUMBER")
-		echo 'Image created'
-	}
-	
-	stage ('Push image') {
-    docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
-
-        def customImage = docker.build("kastguru/sample:latest")
-
-        customImage.push()
-	    echo 'Pushed to hub'
+	stages {
+		stage ('Checkout') {
+			steps {
+				checkout scm
+				echo ('Checkout Successful')
+			}
 		}
+		
+		stage ('Create a Docker Image') {
+			steps {
+				script {
+				docker.build registry + ":$BUILD_NUMBER"
+				}
+			}
+		}
+		stage('Deploy Image') {
+ 		 steps{    script {
+    		  docker.withRegistry( '', registryCredential ) {
+        	  dockerImage.push()
+      }
     }
+  }
 }
-
+	}
+		}
