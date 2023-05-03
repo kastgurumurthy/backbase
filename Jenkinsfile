@@ -16,7 +16,7 @@ node {
 	stage ('Push image') {
     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
 
-        def customImage = docker.build("kastguru/sample")
+        def customImage = docker.build("kastguru/sample:latest")
 
         customImage.push()
 	    echo 'Pushed to hub'
