@@ -12,7 +12,7 @@ node {
 	}
 	
 	stage ('Push image') {
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+    docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
 
         def customImage = docker.build("kastguru/sample")
 
